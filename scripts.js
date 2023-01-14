@@ -21,3 +21,17 @@ function divide (num1, num2) {
     return total;
 }
 
+//Performs an arthimatic operatoin
+function operate (num1, num2, sign) {
+    if (sign == "+") {
+        return add(num1, num2);
+    } else if (sign == "-") {
+        return subtract(num1, num2);
+    } else if (sign  == "*") {
+        return multiply(num1, num2);
+    } else if (sign == "/") {
+        return divide(num1, num2)
+    } else {
+        console.log("no input")
+    }
+}
