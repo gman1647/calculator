@@ -3,10 +3,11 @@
     --function-button-color: #50a3ec;
     --clear-button-color: #0b61cc;
     --enter-button-color: #ffdd65;
+    --background-color: #f0edf1;
 }
 
 * {
-    background-color: #f0edf1;
+    background-color: var(--background-color);
 
 }
 
@@ -23,7 +24,7 @@ h1 {
     display: grid;
     max-width: 475px;
     min-width: 475px;
-    grid-template-rows: [row1] 4.5em [row2] 4.5em [row3] 4.5em [row4] 4.5em [row5] 4.5em;
+    grid-template-rows: [row1] 7.5em [row2] 4.5em [row3] 4.5em [row4] 4.5em [row5] 4.5em;
     border: 3px solid var(--number-button-color);
     border-radius: .5em;
     margin:auto;
@@ -32,10 +33,15 @@ h1 {
 .display {
     background-color: #d1d3d2;
     color: #636361;
+    margin: .5em .2em;
     font-size: 3em;
     text-align: end;
     padding-top: .255em;
     padding-right: .25em;
+}
+
+.row5 {
+    margin-bottom: .75em;
 }
 
 .number {
@@ -45,7 +51,7 @@ h1 {
 
 .operator {
     background-color: var(--function-button-color);
-    color:#f0edf1;
+    color: var(--background-color);
 }
 
 .enter {
@@ -55,7 +61,7 @@ h1 {
 
 .clear {
     background-color: var(--clear-button-color);
-    color:#f0edf1;
+    color: var(--background-color);
 }
 
 button {
@@ -73,6 +79,6 @@ footer {
     bottom: 0;
     width: 100%;
     background-color: var(--clear-button-color);
-    color:#f0edf1;
+    color:var(--background-color);
     text-align: center;
 }
