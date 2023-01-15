@@ -1,3 +1,6 @@
+let displayNumber = 0
+
+
 //Adds two numbers
 function add (num1, num2) {
     total = num1 + num2;
@@ -35,3 +38,8 @@ function operate (num1, num2, sign) {
         console.log("no input")
     }
 }
+
+const display = document.createElement('div');
+display.setAttribute("class", "display");
+calculator.insertBefore(display, row1);
+display.textContent = displayNumber;
