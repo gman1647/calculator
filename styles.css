@@ -64,7 +64,7 @@ h1 {
     color: var(--background-color);
 }
 
-button {
+input {
     height: 2.5em;
     width: 05em;
     margin: .5em;
