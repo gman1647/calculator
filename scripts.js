@@ -1,5 +1,8 @@
 let initNumber = 0
 let displayNumber = ''
+let num1 = 0
+let num2 = 0
+let sign = ''
 
 numberOne = document.getElementById('1');
 numberOne.addEventListener('click', () => {
@@ -51,6 +54,41 @@ numberOne.addEventListener('click', () => {
     updateDisplay(0);
 });
 
+plusSign = document.getElementById('+');
+plusSign.addEventListener('click', () => {
+    storeNum();
+    sign = '+';
+    return sign;
+});
+
+minusSign = document.getElementById('-');
+minusSign.addEventListener('click', () => {
+    storeNum();
+    sign = '-';
+    return sign;
+});
+
+multiplySign = document.getElementById('x');
+multiplySign.addEventListener('click', () => {
+    storeNum();
+    sign = '*';
+    return sign;
+});
+
+divideSign = document.getElementById('÷');
+divideSign.addEventListener('click', () => {
+    storeNum();
+    sign = '/';
+    return sign;
+});
+
+equalSign = document.getElementById('=');
+equalSign.addEventListener('click', () => {
+    num2 = displayNumber
+    displayNumber = ''
+    return updateDisplay(operate(num1, num2, sign));
+});
+
 //Adds two numbers
 function add (num1, num2) {
     total = num1 + num2;
@@ -76,6 +114,8 @@ function divide (num1, num2) {
 
 //Performs an arthimatic operatoin
 function operate (num1, num2, sign) {
+    num1 = parseFloat(num1);
+    num2 = parseFloat(num2);
     if (sign == "+") {
         return add(num1, num2);
     } else if (sign == "-") {
@@ -106,4 +146,14 @@ function updateDisplay (num){
     display.setAttribute('id', 'display');
     calculator.insertBefore(display, row1);
     display.textContent = displayNumber;
+    console.log(displayNumber);
+    return displayNumber;
+}
+
+function storeNum () {
+    num1 = displayNumber;
+    displayNumber = '';
+    console.log(num1);
+    console.log(displayNumber);
+    return num1;
 }
