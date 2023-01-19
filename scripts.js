@@ -89,6 +89,11 @@ equalSign.addEventListener('click', () => {
     return updateDisplay(operate(num1, num2, sign));
 });
 
+clearButton = document.getElementById('C');
+clearButton.addEventListener('click', () => {
+    clear();
+})
+
 //Adds two numbers
 function add (num1, num2) {
     total = num1 + num2;
@@ -146,7 +151,7 @@ function updateDisplay (num){
     display.setAttribute('id', 'display');
     calculator.insertBefore(display, row1);
     display.textContent = displayNumber;
-    console.log(displayNumber);
+    displayNumber = parseFloat(displayNumber);
     return displayNumber;
 }
 
@@ -156,4 +161,11 @@ function storeNum () {
     console.log(num1);
     console.log(displayNumber);
     return num1;
+}
+
+function clear () {
+    num1 = '';
+    displayNumber = 0
+    storeNum();
+    display.textContent = initNumber;
 }
