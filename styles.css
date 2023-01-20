@@ -22,8 +22,8 @@ h1 {
 }
 .calculator {
     display: grid;
-    max-width: 475px;
-    min-width: 475px;
+    max-width: 350px;
+    min-width: 350px;
     grid-template-rows: [row1] 7.5em [row2] 4.5em [row3] 4.5em [row4] 4.5em [row5] 4.5em;
     border: 3px solid var(--number-button-color);
     border-radius: .5em;
@@ -66,8 +66,8 @@ h1 {
 
 input {
     height: 2.5em;
-    width: 05em;
-    margin: .5em;
+    width: 3.75em;
+    margin: .3em;
     font-size: 1.2em;
     font-weight: 700;
     border-radius: .3em;

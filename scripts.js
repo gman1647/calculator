@@ -4,53 +4,96 @@ let num1 = 0
 let num2 = 0
 let sign = ''
 
+function mouseDown() {
+    document.getElementById("myP").style.color = "red";
+  }
+  
+function mouseUp() {
+    document.getElementById("myP").style.color = "blue";
+  }
+
 numberOne = document.getElementById('1');
 numberOne.addEventListener('click', () => {
     updateDisplay(1);
 });
+/*
+numberOne.addEventListener('mousedown', () => {
+    numberOne.style.backgroundColor = "var(--function-button-color)";
+});
+numberOne.addEventListener('mouseup', () => {
+    numberOne.style.backgroundColor = "var(--number-button-color)";
+});
+*/
 
-numberOne = document.getElementById('2');
-numberOne.addEventListener('click', () => {
+document.querySelectorAll('.number').forEach(number => {
+    number.addEventListener('mousedown', () => {
+        number.style.backgroundColor = "var(--function-button-color)";
+    });
+    number.addEventListener('mouseup', () => {
+        number.style.backgroundColor = "var(--number-button-color)";
+    });
+})
+
+document.querySelectorAll('.clear').forEach(number => {
+    number.addEventListener('mousedown', () => {
+        number.style.backgroundColor = "var(--function-button-color)";
+    });
+    number.addEventListener('mouseup', () => {
+        number.style.backgroundColor = "var(--clear-button-color)";
+    });
+})
+
+document.querySelectorAll('.operator').forEach(number => {
+    number.addEventListener('mousedown', () => {
+        number.style.backgroundColor = "var(--clear-button-color)";
+    });
+    number.addEventListener('mouseup', () => {
+        number.style.backgroundColor = "var(--function-button-color)";
+    });
+})
+
+numberTwo = document.getElementById('2');
+numberTwo.addEventListener('click', () => {
     updateDisplay(2);
 });
 
-numberOne = document.getElementById('3');
-numberOne.addEventListener('click', () => {
+numberThree = document.getElementById('3');
+numberThree.addEventListener('click', () => {
     updateDisplay(3);
 });
 
-numberOne = document.getElementById('4');
-numberOne.addEventListener('click', () => {
+numberFour = document.getElementById('4');
+numberFour.addEventListener('click', () => {
     updateDisplay(4);
 });
 
-numberOne = document.getElementById('5');
-numberOne.addEventListener('click', () => {
+numberFive = document.getElementById('5');
+numberFive.addEventListener('click', () => {
     updateDisplay(5);
 });
 
-numberOne = document.getElementById('6');
-numberOne.addEventListener('click', () => {
+numberSix = document.getElementById('6');
+numberSix.addEventListener('click', () => {
     updateDisplay(6);
 });
 
-numberOne = document.getElementById('7');
-numberOne.addEventListener('click', () => {
+numberSeven = document.getElementById('7');
+numberSeven.addEventListener('click', () => {
     updateDisplay(7);
 });
 
-numberOne = document.getElementById('8');
-numberOne.addEventListener('click', () => {
+numberEight = document.getElementById('8');
+numberEight.addEventListener('click', () => {
     updateDisplay(8);
 });
 
-numberOne = document.getElementById('9');
-numberOne.addEventListener('click', () => {
+numberNine = document.getElementById('9');
+numberNine.addEventListener('click', () => {
     updateDisplay(9);
 });
 
-numberOne = document.getElementById('0');
-numberOne.addEventListener('click', () => {
+numberZero = document.getElementById('0');
+numberZero.addEventListener('click', () => {
     updateDisplay(0);
 });
 
@@ -87,6 +130,12 @@ equalSign.addEventListener('click', () => {
     num2 = displayNumber
     displayNumber = ''
     return updateDisplay(operate(num1, num2, sign));
+});
+equalSign.addEventListener('mousedown', () => {
+    equalSign.style.backgroundColor = "var(--function-button-color)";
+});
+equalSign.addEventListener('mouseup', () => {
+    equalSign.style.backgroundColor = "var(--enter-button-color)";
 });
 
 clearButton = document.getElementById('C');
@@ -159,7 +208,6 @@ function storeNum () {
     num1 = displayNumber;
     displayNumber = '';
     console.log(num1);
-    console.log(displayNumber);
     return num1;
 }
 
