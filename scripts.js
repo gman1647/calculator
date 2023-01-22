@@ -89,8 +89,6 @@ plusSign.addEventListener('click', () => {
     return sign;
 });
 
-
-
 minusSign = document.getElementById('-');
 minusSign.addEventListener('click', () => {
     checkSign();
@@ -204,6 +202,8 @@ function updateDisplay (num){
     calculator.insertBefore(display, row1);
     display.textContent = displayNumber;
     displayNumber = parseFloat(displayNumber);
+    console.log(displayNumber);
+    checkLength(displayNumber);
     return displayNumber;
 }
 
@@ -220,5 +220,29 @@ function clear () {
     sign = '';
     storeNum();
     display.textContent = initNumber;
+    tooLong= document.getElementById('errorMessage');
+    document.body.removeChild(tooLong);
+    remove.getElementById
+}
+
+function checkLength (string) {
+    string = string.toString();
+    console.log(string.length)
+    if (string.length > 13) {
+        tooLong = document.createElement('div');
+        tooLong.setAttribute('id', 'errorMessage')
+        document.body.appendChild(tooLong);
+        tooLong.textContent = 'Error: maximum output is 13 digts.'
+        remove = document.getElementById('display');
+        calculator.removeChild(remove);
+        display = document.createElement('div');
+        display.setAttribute("class", "display");
+        display.setAttribute('id', 'display');
+        calculator.insertBefore(display, row1);
+        display.textContent = "Error";
+
+    } else {
+        console.log("all good")
+    }
 }
 

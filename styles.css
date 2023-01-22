@@ -73,6 +73,14 @@ input {
     border-radius: .3em;
 }
 
+#errorMessage {
+    color: var(--clear-button-color);
+    font-size: 1.6em;
+    text-align: center;
+    font-weight: 500;
+    font-style: oblique;
+}
+
 footer {
     position: fixed;
     left: 0;
