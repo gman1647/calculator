@@ -4,27 +4,6 @@ let num1 = 0
 let num2 = 0
 let sign = ''
 
-function mouseDown() {
-    document.getElementById("myP").style.color = "red";
-  }
-  
-function mouseUp() {
-    document.getElementById("myP").style.color = "blue";
-  }
-
-numberOne = document.getElementById('1');
-numberOne.addEventListener('click', () => {
-    updateDisplay(1);
-});
-/*
-numberOne.addEventListener('mousedown', () => {
-    numberOne.style.backgroundColor = "var(--function-button-color)";
-});
-numberOne.addEventListener('mouseup', () => {
-    numberOne.style.backgroundColor = "var(--number-button-color)";
-});
-*/
-
 document.querySelectorAll('.number').forEach(number => {
     number.addEventListener('mousedown', () => {
         number.style.backgroundColor = "var(--function-button-color)";
@@ -51,6 +30,11 @@ document.querySelectorAll('.operator').forEach(number => {
         number.style.backgroundColor = "var(--function-button-color)";
     });
 })
+
+numberOne = document.getElementById('1');
+numberOne.addEventListener('click', () => {
+    updateDisplay(1);
+});
 
 numberTwo = document.getElementById('2');
 numberTwo.addEventListener('click', () => {
@@ -99,13 +83,17 @@ numberZero.addEventListener('click', () => {
 
 plusSign = document.getElementById('+');
 plusSign.addEventListener('click', () => {
+    checkSign()
     storeNum();
     sign = '+';
     return sign;
 });
 
+
+
 minusSign = document.getElementById('-');
 minusSign.addEventListener('click', () => {
+    checkSign();
     storeNum();
     sign = '-';
     return sign;
@@ -113,6 +101,7 @@ minusSign.addEventListener('click', () => {
 
 multiplySign = document.getElementById('x');
 multiplySign.addEventListener('click', () => {
+    checkSign();
     storeNum();
     sign = '*';
     return sign;
@@ -120,6 +109,7 @@ multiplySign.addEventListener('click', () => {
 
 divideSign = document.getElementById('÷');
 divideSign.addEventListener('click', () => {
+    checkSign();
     storeNum();
     sign = '/';
     return sign;
@@ -127,9 +117,7 @@ divideSign.addEventListener('click', () => {
 
 equalSign = document.getElementById('=');
 equalSign.addEventListener('click', () => {
-    num2 = displayNumber
-    displayNumber = ''
-    return updateDisplay(operate(num1, num2, sign));
+    runOperation();
 });
 equalSign.addEventListener('mousedown', () => {
     equalSign.style.backgroundColor = "var(--function-button-color)";
@@ -166,6 +154,15 @@ function divide (num1, num2) {
     return total;
 }
 
+//Checks to see if operator button was previously entered to update running total
+function checkSign() {
+    if (sign !== '') {
+        runOperation();
+    } else {
+        console.log("no sign");
+    }
+};
+
 //Performs an arthimatic operatoin
 function operate (num1, num2, sign) {
     num1 = parseFloat(num1);
@@ -181,6 +178,12 @@ function operate (num1, num2, sign) {
     } else {
         console.log("no input");
     }
+}
+
+function runOperation () {
+    num2 = displayNumber
+    displayNumber = ''
+    return updateDisplay(operate(num1, num2, sign));
 }
 
 //Adds the diplay for user input
@@ -214,6 +217,8 @@ function storeNum () {
 function clear () {
     num1 = '';
     displayNumber = 0
+    sign = '';
     storeNum();
     display.textContent = initNumber;
 }
+
