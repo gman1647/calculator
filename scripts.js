@@ -4,6 +4,8 @@ let num1 = 0
 let num2 = 0
 let sign = ''
 
+
+
 document.querySelectorAll('.number').forEach(number => {
     number.addEventListener('mousedown', () => {
         number.style.backgroundColor = "var(--function-button-color)";
@@ -33,52 +35,52 @@ document.querySelectorAll('.operator').forEach(number => {
 
 numberOne = document.getElementById('1');
 numberOne.addEventListener('click', () => {
-    updateDisplay(1);
+    updateNumber(1);
 });
 
 numberTwo = document.getElementById('2');
 numberTwo.addEventListener('click', () => {
-    updateDisplay(2);
+    updateNumber(2);
 });
 
 numberThree = document.getElementById('3');
 numberThree.addEventListener('click', () => {
-    updateDisplay(3);
+    updateNumber(3);
 });
 
 numberFour = document.getElementById('4');
 numberFour.addEventListener('click', () => {
-    updateDisplay(4);
+    updateNumber(4);
 });
 
 numberFive = document.getElementById('5');
 numberFive.addEventListener('click', () => {
-    updateDisplay(5);
+    updateNumber(5);
 });
 
 numberSix = document.getElementById('6');
 numberSix.addEventListener('click', () => {
-    updateDisplay(6);
+    updateNumber(6);
 });
 
 numberSeven = document.getElementById('7');
 numberSeven.addEventListener('click', () => {
-    updateDisplay(7);
+    updateNumber(7);
 });
 
 numberEight = document.getElementById('8');
 numberEight.addEventListener('click', () => {
-    updateDisplay(8);
+    updateNumber(8);
 });
 
 numberNine = document.getElementById('9');
 numberNine.addEventListener('click', () => {
-    updateDisplay(9);
+    updateNumber(9);
 });
 
 numberZero = document.getElementById('0');
 numberZero.addEventListener('click', () => {
-    updateDisplay(0);
+    updateNumber(0);
 });
 
 plusSign = document.getElementById('+');
@@ -127,6 +129,12 @@ equalSign.addEventListener('mouseup', () => {
 clearButton = document.getElementById('C');
 clearButton.addEventListener('click', () => {
     clear();
+})
+
+deleteButton = document.getElementById('del');
+deleteButton.addEventListener('click', () => {
+    deleteLast(displayNumber);
+    updateDisplay(displayNumber);
 })
 
 //Adds two numbers
@@ -181,7 +189,7 @@ function operate (num1, num2, sign) {
 function runOperation () {
     num2 = displayNumber
     displayNumber = ''
-    return updateDisplay(operate(num1, num2, sign));
+    return updateNumber(operate(num1, num2, sign));
 }
 
 //Adds the diplay for user input
@@ -191,9 +199,13 @@ display.setAttribute('id', 'display');
 calculator.insertBefore(display, row1);
 display.textContent = initNumber;
 
-//updates display as numbers are clicked
-function updateDisplay (num){
+function updateNumber (num) {
     displayNumber = displayNumber.toString() + num;
+    return updateDisplay(displayNumber);
+}
+
+//updates display
+function updateDisplay (){
     remove = document.getElementById('display');
     calculator.removeChild(remove);
     display = document.createElement('div');
@@ -202,15 +214,12 @@ function updateDisplay (num){
     calculator.insertBefore(display, row1);
     display.textContent = displayNumber;
     displayNumber = parseFloat(displayNumber);
-    console.log(displayNumber);
-    checkLength(displayNumber);
     return displayNumber;
 }
 
 function storeNum () {
     num1 = displayNumber;
     displayNumber = '';
-    console.log(num1);
     return num1;
 }
 
@@ -222,7 +231,22 @@ function clear () {
     display.textContent = initNumber;
     tooLong= document.getElementById('errorMessage');
     document.body.removeChild(tooLong);
-    remove.getElementById
+}
+
+function deleteLast (displayNumber) {
+    displayNumber = displayNumber.toString();
+    console.log(displayNumber);
+    displayNumber = displayNumber.slice(0, -1);
+    console.log(displayNumber);
+    return displayNumber;
+
+/*    let num = displayNumbenr[0];
+    console.log(num)
+    console.log(displayNumber.length);
+    let removed = displayNumber.slice(0, -1);
+    console.log(removed);
+    console.log(displayNumber)
+   */ 
 }
 
 function checkLength (string) {
