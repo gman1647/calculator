@@ -197,8 +197,9 @@ calculator.insertBefore(display, row1);
 display.textContent = initNumber;
 
 function updateNumber (num) {
-    console.log(displayNumber + " this is from update number")
+    console.log("this is from update number: " + displayNumber)
     displayNumber = displayNumber.toString() + num;
+    checkLength(displayNumber);
     return updateDisplay(displayNumber);
 }
 
@@ -231,10 +232,11 @@ function clear () {
     document.body.removeChild(tooLong);
 }
 
-function deleteLast (displayNumber) {
-    displayNumber = displayNumber.toString();
-    displayNumber = displayNumber.slice(0, -1);
-    display.textContent = displayNumber;
+function deleteLast (num) {
+    num = num.toString();
+    num = num.slice(0, -1);
+    display.textContent = num;
+    displayNumber = num;
     return displayNumber;
 }
 
@@ -257,4 +259,5 @@ function checkLength (string) {
         console.log("all good")
     }
 }
+
 
