@@ -4,8 +4,6 @@ let num1 = 0
 let num2 = 0
 let sign = ''
 
-
-
 document.querySelectorAll('.number').forEach(number => {
     number.addEventListener('mousedown', () => {
         number.style.backgroundColor = "var(--function-button-color)";
@@ -134,8 +132,7 @@ clearButton.addEventListener('click', () => {
 deleteButton = document.getElementById('del');
 deleteButton.addEventListener('click', () => {
     deleteLast(displayNumber);
-    updateDisplay(displayNumber);
-})
+});
 
 //Adds two numbers
 function add (num1, num2) {
@@ -200,6 +197,7 @@ calculator.insertBefore(display, row1);
 display.textContent = initNumber;
 
 function updateNumber (num) {
+    console.log(displayNumber + " this is from update number")
     displayNumber = displayNumber.toString() + num;
     return updateDisplay(displayNumber);
 }
@@ -235,23 +233,13 @@ function clear () {
 
 function deleteLast (displayNumber) {
     displayNumber = displayNumber.toString();
-    console.log(displayNumber);
     displayNumber = displayNumber.slice(0, -1);
-    console.log(displayNumber);
+    display.textContent = displayNumber;
     return displayNumber;
-
-/*    let num = displayNumbenr[0];
-    console.log(num)
-    console.log(displayNumber.length);
-    let removed = displayNumber.slice(0, -1);
-    console.log(removed);
-    console.log(displayNumber)
-   */ 
 }
 
 function checkLength (string) {
     string = string.toString();
-    console.log(string.length)
     if (string.length > 13) {
         tooLong = document.createElement('div');
         tooLong.setAttribute('id', 'errorMessage')
