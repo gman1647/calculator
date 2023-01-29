@@ -197,14 +197,15 @@ calculator.insertBefore(display, row1);
 display.textContent = initNumber;
 
 function updateNumber (num) {
+    checkLength(displayNumber);
     console.log("this is from update number: " + displayNumber)
     displayNumber = displayNumber.toString() + num;
-    checkLength(displayNumber);
     return updateDisplay(displayNumber);
 }
 
 //updates display
 function updateDisplay (){
+    checkLength(displayNumber);
     remove = document.getElementById('display');
     calculator.removeChild(remove);
     display = document.createElement('div');
@@ -212,8 +213,12 @@ function updateDisplay (){
     display.setAttribute('id', 'display');
     calculator.insertBefore(display, row1);
     display.textContent = displayNumber;
+    if (displayNumber.startsWith("Error")) {
+       return displayNumber;
+    } else {
     displayNumber = parseFloat(displayNumber);
     return displayNumber;
+};
 }
 
 function storeNum () {
@@ -242,19 +247,17 @@ function deleteLast (num) {
 
 function checkLength (string) {
     string = string.toString();
-    if (string.length > 13) {
+    if (string.startsWith("Error")) {
+        console.log("too long")
+        displayNumber="Error";
+        return displayNumber;    
+    } else if (string.length > 13) {
         tooLong = document.createElement('div');
         tooLong.setAttribute('id', 'errorMessage')
         document.body.appendChild(tooLong);
         tooLong.textContent = 'Error: maximum output is 13 digts.'
-        remove = document.getElementById('display');
-        calculator.removeChild(remove);
-        display = document.createElement('div');
-        display.setAttribute("class", "display");
-        display.setAttribute('id', 'display');
-        calculator.insertBefore(display, row1);
-        display.textContent = "Error";
-
+        displayNumber = 'Error'
+        updateDisplay();
     } else {
         console.log("all good")
     }
