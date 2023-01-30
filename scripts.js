@@ -83,35 +83,52 @@ numberZero.addEventListener('click', () => {
 
 plusSign = document.getElementById('+');
 plusSign.addEventListener('click', () => {
-    checkSign()
+    if (displayNumber === "") {
+        sign = '+';
+        return sign;
+    } else {
+    checkSign();
     storeNum();
     sign = '+';
     return sign;
-});
+    }});
+
 
 minusSign = document.getElementById('-');
 minusSign.addEventListener('click', () => {
+    if (displayNumber === "") {
+        sign = '-';
+        return sign;
+    } else {
     checkSign();
     storeNum();
     sign = '-';
     return sign;
-});
+    }});
 
 multiplySign = document.getElementById('x');
 multiplySign.addEventListener('click', () => {
+    if (displayNumber === "") {
+        sign = '*';
+        return sign;
+    } else {
     checkSign();
     storeNum();
     sign = '*';
     return sign;
-});
+    }});
 
 divideSign = document.getElementById('÷');
 divideSign.addEventListener('click', () => {
+    if (displayNumber === "") {
+        sign = '/';
+        return sign;
+    } else {
     checkSign();
     storeNum();
     sign = '/';
     return sign;
-});
+    }});
 
 equalSign = document.getElementById('=');
 equalSign.addEventListener('click', () => {
