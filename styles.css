@@ -60,6 +60,7 @@ h1 {
 }
 
 .clear {
+    width: 8.25em;
     background-color: var(--clear-button-color);
     color: var(--background-color);
 }
