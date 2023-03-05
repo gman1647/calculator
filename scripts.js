@@ -31,6 +31,47 @@ document.querySelectorAll('.operator').forEach(number => {
     });
 })
 
+document.addEventListener('keydown', function(event) {
+    if (event.defaultPrevented) {
+        return;
+        }
+        if (event.key === "1") {
+            updateNumber(1);
+        } else if (event.key === "2") {
+            updateNumber(2);
+        } else if (event.key === "3") {
+            updateNumber(3);
+        } else if (event.key === "4") {
+            updateNumber(4);
+        } else if (event.key === "5") {
+            updateNumber(5);
+        } else if (event.key === "6") {
+            updateNumber(6);
+        } else if (event.key === "7") {
+            updateNumber(7);
+        } else if (event.key === "8") {
+            updateNumber(8);
+        } else if (event.key === "9") {
+            updateNumber(9);
+        } else if (event.key === "0") {
+            updateNumber(0);
+        } else if (event.key === "+") {
+            plusSignPressed ();
+        } else if (event.key === "-") {
+            minusSignPressed ();
+        } else if (event.key === "/") {
+            divSignPressed ();
+        } else if (event.key === "*") {
+            multSignPressed ();
+        } else if (event.key === "Enter") {
+            runOperation ();
+        } else if (event.key === "Escape") {
+            clear();
+        } else if (event.key === "Backspace") {
+            deleteLast(displayNumber);
+        }
+});
+
 numberOne = document.getElementById('1');
 numberOne.addEventListener('click', () => {
     updateNumber(1);
@@ -83,52 +124,23 @@ numberZero.addEventListener('click', () => {
 
 plusSign = document.getElementById('+');
 plusSign.addEventListener('click', () => {
-    if (displayNumber === "") {
-        sign = '+';
-        return sign;
-    } else {
-    checkSign();
-    storeNum();
-    sign = '+';
-    return sign;
-    }});
-
+    plusSignPressed ()
+});
 
 minusSign = document.getElementById('-');
 minusSign.addEventListener('click', () => {
-    if (displayNumber === "") {
-        sign = '-';
-        return sign;
-    } else {
-    checkSign();
-    storeNum();
-    sign = '-';
-    return sign;
-    }});
+    minusSignPressed()
+});
 
 multiplySign = document.getElementById('x');
 multiplySign.addEventListener('click', () => {
-    if (displayNumber === "") {
-        sign = '*';
-        return sign;
-    } else {
-    checkSign();
-    storeNum();
-    sign = '*';
-    return sign;
-    }});
+    multSignPressed()
+});
 
 divideSign = document.getElementById('÷');
 divideSign.addEventListener('click', () => {
-    if (displayNumber === "") {
-        sign = '/';
-        return sign;
-    } else {
-    checkSign();
-    storeNum();
-    sign = '/';
-    return sign;
-    }});
+    divSignPressed()
+});
 
 equalSign = document.getElementById('=');
 equalSign.addEventListener('click', () => {
@@ -151,6 +163,53 @@ deleteButton.addEventListener('click', () => {
     deleteLast(displayNumber);
 });
 
+function plusSignPressed () {
+    if (displayNumber === "") {
+        sign = '+';
+        return sign;
+    } else {
+    checkSign();
+    storeNum();
+    sign = '+';
+    return sign;
+    }
+}
+
+function minusSignPressed () {
+    if (displayNumber === "") {
+        sign = '-';
+        return sign;
+    } else {
+    checkSign();
+    storeNum();
+    sign = '-';
+    return sign;
+    }
+}
+
+function multSignPressed () {
+    if (displayNumber === "") {
+        sign = '*';
+        return sign;
+    } else {
+    checkSign();
+    storeNum();
+    sign = '*';
+    return sign;
+    }
+}
+
+function divSignPressed () {
+    if (displayNumber === "") {
+        sign = '/';
+        return sign;
+    } else {
+    checkSign();
+    storeNum();
+    sign = '/';
+    return sign;
+    }
+}
 //Adds two numbers
 function add (num1, num2) {
     total = num1 + num2;
