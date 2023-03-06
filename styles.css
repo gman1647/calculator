@@ -20,6 +20,7 @@ h1 {
     -webkit-text-fill-color: var(--number-button-color);
     -webkit-text-stroke: 1px var(--clear-button-color);
 }
+
 .calculator {
     display: grid;
     max-width: 350px;
@@ -28,6 +29,15 @@ h1 {
     border: 3px solid var(--number-button-color);
     border-radius: .5em;
     margin:auto;
+}
+
+.darkmode {
+    text-align: right;
+    background-color: var(--background-color);
+    border: 3px solid var(--number-button-color);
+    color: var(--clear-button-color);
+    border-radius: 3px;
+    float: right;
 }
 
 .display {
@@ -91,3 +101,10 @@ footer {
     color:var(--background-color);
     text-align: center;
 }
+
+/*dark mode
+background color: #282828
+buttons number flip background and num color
+Equal light blue with yellow equal sign
+
+*/
