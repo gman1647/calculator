@@ -1,36 +1,201 @@
+//initial global variable declarations
 let initNumber = 0
 let displayNumber = ''
 let num1 = 0
 let num2 = 0
 let sign = ''
 
-document.querySelectorAll('.number').forEach(number => {
-    number.addEventListener('mousedown', () => {
-        number.style.backgroundColor = "var(--function-button-color)";
-    });
-    number.addEventListener('mouseup', () => {
-        number.style.backgroundColor = "var(--number-button-color)";
-    });
-})
+//Adds two numbers
+function add (num1, num2) {
+    total = num1 + num2;
+    return total;
+}
 
-document.querySelectorAll('.clear').forEach(number => {
-    number.addEventListener('mousedown', () => {
-        number.style.backgroundColor = "var(--function-button-color)";
-    });
-    number.addEventListener('mouseup', () => {
-        number.style.backgroundColor = "var(--clear-button-color)";
-    });
-})
+//Subtracts two numbers
+function subtract (num1, num2) {
+    total = num1 - num2;
+    return total;
+}
 
-document.querySelectorAll('.operator').forEach(number => {
-    number.addEventListener('mousedown', () => {
-        number.style.backgroundColor = "var(--clear-button-color)";
-    });
-    number.addEventListener('mouseup', () => {
-        number.style.backgroundColor = "var(--function-button-color)";
-    });
-})
+//Multiplies two numbers
+function multiply (num1, num2) {
+    total = num1 * num2;
+    return total;
+}
+//Divides two numbers
+function divide (num1, num2) {
+    total = num1 / num2;
+    return total;
+}
+//Performs an arthimatic operatoin
+function operate (num1, num2, sign) {
+    num1 = parseFloat(num1);
+    num2 = parseFloat(num2);
+    if (sign == "+") {
+        return add(num1, num2);
+    } else if (sign == "-") {
+        return subtract(num1, num2);
+    } else if (sign  == "*") {
+        return multiply(num1, num2);
+    } else if (sign == "/") {
+        return divide(num1, num2);
+    } else {
+        console.log("no input");
+    }
+}
 
+function runOperation () {    //do I need this??
+    num2 = displayNumber
+    displayNumber = ''
+    return updateNumber(operate(num1, num2, sign));
+}
+
+//updates the number being entered
+function updateNumber (num) {
+    checkLength(displayNumber);
+    console.log("this is from update number: " + displayNumber)
+    displayNumber = displayNumber.toString() + num;
+    return updateDisplay(displayNumber);
+}
+
+//updates display
+function updateDisplay (){
+    checkLength(displayNumber);
+    remove = document.getElementById('display');
+    calculator.removeChild(remove);
+    display = document.createElement('div');
+    display.setAttribute("class", "display");
+    display.setAttribute('id', 'display');
+    calculator.insertBefore(display, row1);
+    display.textContent = displayNumber;
+    if (displayNumber.startsWith("Error")) {
+        displayNumber = "Error"
+       return displayNumber;
+    } else {
+    displayNumber = parseFloat(displayNumber);
+    return displayNumber;
+};
+}
+
+//stores the display number as num1
+function storeNum () {
+    num1 = displayNumber;
+    displayNumber = '';
+    return num1;
+}
+
+//clears display and all stored data
+function clear () {
+    num1 = '';
+    displayNumber = 0
+    sign = '';
+    storeNum();
+    display.textContent = initNumber;
+    tooLong= document.getElementById('errorMessage');
+    document.body.removeChild(tooLong);
+}
+
+//deletes last digit entered
+function deleteLast (num) {
+    if (num === "Error") {
+        displayNumber = "Error";
+        return displayNumber;
+    } else if (num == 0) {
+        displayNumber = 0;
+        return displayNumber;
+    } else {
+    num = num.toString();
+    num = num.slice(0, -1);
+    display.textContent = num;
+    displayNumber = num;
+    return displayNumber;
+}};
+
+//checks if the string is too long for the display and returns error if so
+function checkLength (string) {
+    string = string.toString();
+    if (string.startsWith("Error")) {
+        console.log("too long")
+        displayNumber="Error";
+        return displayNumber;    
+    } else if (string.length > 13) {
+        tooLong = document.createElement('div');
+        tooLong.setAttribute('id', 'errorMessage')
+        document.body.appendChild(tooLong);
+        tooLong.textContent = 'Error: maximum output is 13 digts.'
+        displayNumber = 'Error'
+        updateDisplay();
+    } else {
+        console.log("all good")
+    }
+}
+
+//handles operator input
+function plusSignPressed () {
+    if (displayNumber === "") {
+        sign = '+';
+        return sign;
+    } else {
+    checkSign();
+    storeNum();
+    sign = '+';
+    return sign;
+    }
+}
+
+function minusSignPressed () {
+    if (displayNumber === "") {
+        sign = '-';
+        return sign;
+    } else {
+    checkSign();
+    storeNum();
+    sign = '-';
+    return sign;
+    }
+}
+
+function multSignPressed () {
+    if (displayNumber === "") {
+        sign = '*';
+        return sign;
+    } else {
+    checkSign();
+    storeNum();
+    sign = '*';
+    return sign;
+    }
+}
+
+function divSignPressed () {
+    if (displayNumber === "") {
+        sign = '/';
+        return sign;
+    } else {
+    checkSign();
+    storeNum();
+    sign = '/';
+    return sign;
+    }
+}
+
+//Checks to see if operator button was previously entered to update running total
+function checkSign() {
+    if (sign !== '') {
+        runOperation();
+    } else {
+        console.log("no sign");
+    }
+};
+
+//Adds the diplay for user input
+let display = document.createElement('div');
+display.setAttribute("class", "display");
+display.setAttribute('id', 'display');
+calculator.insertBefore(display, row1);
+display.textContent = initNumber;
+
+//event listeners for keyboard input
 document.addEventListener('keydown', function(event) {
     if (event.defaultPrevented) {
         return;
@@ -72,6 +237,7 @@ document.addEventListener('keydown', function(event) {
         }
 });
 
+//event listeners for mouse clicks on the buttons
 numberOne = document.getElementById('1');
 numberOne.addEventListener('click', () => {
     updateNumber(1);
@@ -121,7 +287,12 @@ numberZero = document.getElementById('0');
 numberZero.addEventListener('click', () => {
     updateNumber(0);
 });
-
+/*
+decimalButton = document.getElementById('.');
+decimalButton.addEventListener('click', () => {
+    updateNumber(".");
+})
+*/
 plusSign = document.getElementById('+');
 plusSign.addEventListener('click', () => {
     plusSignPressed ()
@@ -163,180 +334,32 @@ deleteButton.addEventListener('click', () => {
     deleteLast(displayNumber);
 });
 
-function plusSignPressed () {
-    if (displayNumber === "") {
-        sign = '+';
-        return sign;
-    } else {
-    checkSign();
-    storeNum();
-    sign = '+';
-    return sign;
-    }
-}
+//adds color changes so user can see what was clicked
+document.querySelectorAll('.number').forEach(number => {
+    number.addEventListener('mousedown', () => {
+        number.style.backgroundColor = "var(--function-button-color)";
+    });
+    number.addEventListener('mouseup', () => {
+        number.style.backgroundColor = "var(--number-button-color)";
+    });
+})
 
-function minusSignPressed () {
-    if (displayNumber === "") {
-        sign = '-';
-        return sign;
-    } else {
-    checkSign();
-    storeNum();
-    sign = '-';
-    return sign;
-    }
-}
+document.querySelectorAll('.clear').forEach(number => {
+    number.addEventListener('mousedown', () => {
+        number.style.backgroundColor = "var(--function-button-color)";
+    });
+    number.addEventListener('mouseup', () => {
+        number.style.backgroundColor = "var(--clear-button-color)";
+    });
+})
 
-function multSignPressed () {
-    if (displayNumber === "") {
-        sign = '*';
-        return sign;
-    } else {
-    checkSign();
-    storeNum();
-    sign = '*';
-    return sign;
-    }
-}
-
-function divSignPressed () {
-    if (displayNumber === "") {
-        sign = '/';
-        return sign;
-    } else {
-    checkSign();
-    storeNum();
-    sign = '/';
-    return sign;
-    }
-}
-//Adds two numbers
-function add (num1, num2) {
-    total = num1 + num2;
-    return total;
-}
-
-//Subtracts two numbers
-function subtract (num1, num2) {
-    total = num1 - num2;
-    return total;
-}
-
-//Multiplies two numbers
-function multiply (num1, num2) {
-    total = num1 * num2;
-    return total;
-}
-//Divides two numbers
-function divide (num1, num2) {
-    total = num1 / num2;
-    return total;
-}
-
-//Checks to see if operator button was previously entered to update running total
-function checkSign() {
-    if (sign !== '') {
-        runOperation();
-    } else {
-        console.log("no sign");
-    }
-};
-
-//Performs an arthimatic operatoin
-function operate (num1, num2, sign) {
-    num1 = parseFloat(num1);
-    num2 = parseFloat(num2);
-    if (sign == "+") {
-        return add(num1, num2);
-    } else if (sign == "-") {
-        return subtract(num1, num2);
-    } else if (sign  == "*") {
-        return multiply(num1, num2);
-    } else if (sign == "/") {
-        return divide(num1, num2);
-    } else {
-        console.log("no input");
-    }
-}
-
-function runOperation () {
-    num2 = displayNumber
-    displayNumber = ''
-    return updateNumber(operate(num1, num2, sign));
-}
-
-//Adds the diplay for user input
-let display = document.createElement('div');
-display.setAttribute("class", "display");
-display.setAttribute('id', 'display');
-calculator.insertBefore(display, row1);
-display.textContent = initNumber;
-
-function updateNumber (num) {
-    checkLength(displayNumber);
-    console.log("this is from update number: " + displayNumber)
-    displayNumber = displayNumber.toString() + num;
-    return updateDisplay(displayNumber);
-}
-
-//updates display
-function updateDisplay (){
-    checkLength(displayNumber);
-    remove = document.getElementById('display');
-    calculator.removeChild(remove);
-    display = document.createElement('div');
-    display.setAttribute("class", "display");
-    display.setAttribute('id', 'display');
-    calculator.insertBefore(display, row1);
-    display.textContent = displayNumber;
-    if (displayNumber.startsWith("Error")) {
-       return displayNumber;
-    } else {
-    displayNumber = parseFloat(displayNumber);
-    return displayNumber;
-};
-}
-
-function storeNum () {
-    num1 = displayNumber;
-    displayNumber = '';
-    return num1;
-}
-
-function clear () {
-    num1 = '';
-    displayNumber = 0
-    sign = '';
-    storeNum();
-    display.textContent = initNumber;
-    tooLong= document.getElementById('errorMessage');
-    document.body.removeChild(tooLong);
-}
-
-function deleteLast (num) {
-    num = num.toString();
-    num = num.slice(0, -1);
-    display.textContent = num;
-    displayNumber = num;
-    return displayNumber;
-}
-
-function checkLength (string) {
-    string = string.toString();
-    if (string.startsWith("Error")) {
-        console.log("too long")
-        displayNumber="Error";
-        return displayNumber;    
-    } else if (string.length > 13) {
-        tooLong = document.createElement('div');
-        tooLong.setAttribute('id', 'errorMessage')
-        document.body.appendChild(tooLong);
-        tooLong.textContent = 'Error: maximum output is 13 digts.'
-        displayNumber = 'Error'
-        updateDisplay();
-    } else {
-        console.log("all good")
-    }
-}
+document.querySelectorAll('.operator').forEach(number => {
+    number.addEventListener('mousedown', () => {
+        number.style.backgroundColor = "var(--clear-button-color)";
+    });
+    number.addEventListener('mouseup', () => {
+        number.style.backgroundColor = "var(--function-button-color)";
+    });
+})
 
 
