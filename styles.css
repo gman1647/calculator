@@ -1,14 +1,43 @@
 :root {
+
+
     --number-button-color: #92c8f5;
     --function-button-color: #50a3ec;
     --clear-button-color: #0b61cc;
     --enter-button-color: #ffdd65;
+    --enter-button-text: #0b61cc;
     --background-color: #f0edf1;
+}
+
+.darkmode {
+    --number-button-color: #0b61cc;
+    --function-button-color: #636361;
+    --clear-button-color: #50a3ec;
+    --enter-button-color: #ffdd65;
+    --enter-button-text: #50a3ec;
+    --background-color: #282828; 
 }
 
 * {
     background-color: var(--background-color);
+}
 
+.darkmode {
+    --number-button-color: #0b61cc;
+    --function-button-color: #636361;
+    --clear-button-color: #50a3ec;
+    --enter-button-color: #ffdd65;
+    --enter-button-text: #50a3ec;
+    --background-color: #282828; 
+}
+
+.dark-mode-toggle {
+    text-align: right;
+    background-color: var(--background-color);
+    border: 3px solid var(--number-button-color);
+    color: var(--clear-button-color);
+    border-radius: 3px;
+    float: right;
 }
 
 h1 {
@@ -31,14 +60,6 @@ h1 {
     margin:auto;
 }
 
-.darkmode {
-    text-align: right;
-    background-color: var(--background-color);
-    border: 3px solid var(--number-button-color);
-    color: var(--clear-button-color);
-    border-radius: 3px;
-    float: right;
-}
 
 .display {
     background-color: #d1d3d2;
@@ -56,7 +77,7 @@ h1 {
 
 .number {
     background-color: var(--number-button-color);
-    color: #0b61cc;
+    color: var(--clear-button-color);
 }
 
 .operator {
@@ -66,7 +87,7 @@ h1 {
 
 .enter {
     background-color: var(--enter-button-color);
-    color:#0b61cc;
+    color: var(--enter-button-text);
 }
 
 .clear {
@@ -102,9 +123,3 @@ footer {
     text-align: center;
 }
 
-/*dark mode
-background color: #282828
-buttons number flip background and num color
-Equal light blue with yellow equal sign
-
-*/
