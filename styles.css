@@ -1,6 +1,4 @@
 :root {
-
-
     --number-button-color: #92c8f5;
     --function-button-color: #50a3ec;
     --clear-button-color: #0b61cc;
@@ -22,22 +20,19 @@
     background-color: var(--background-color);
 }
 
-.darkmode {
-    --number-button-color: #0b61cc;
-    --function-button-color: #636361;
-    --clear-button-color: #50a3ec;
-    --enter-button-color: #ffdd65;
-    --enter-button-text: #50a3ec;
-    --background-color: #282828; 
-}
-
 .dark-mode-toggle {
     text-align: right;
+    margin: 5px 10px;
     background-color: var(--background-color);
     border: 3px solid var(--number-button-color);
     color: var(--clear-button-color);
     border-radius: 3px;
     float: right;
+}
+
+body {
+    margin: 0;
+    padding-bottom: 100%;
 }
 
 h1 {

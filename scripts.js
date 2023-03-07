@@ -362,4 +362,26 @@ document.querySelectorAll('.operator').forEach(number => {
     });
 })
 
+const darkModeToggle = document.querySelector('#dark-mode-toggle');
 
+let darkMode = 'disabled';
+
+const enableDarkMode = () => {
+    document.body.classList.add('darkmode');
+    darkMode = 'enabled';
+    return darkMode;
+}
+
+const disableDarkMode = () => {
+    document.body.classList.remove('darkmode');
+    darkMode = 'disabled';
+    return darkMode;
+}
+
+darkModeToggle.addEventListener('click', () => {
+   if (darkMode !== 'enabled') {
+    enableDarkMode();
+   } else {
+    disableDarkMode();
+   }
+});
