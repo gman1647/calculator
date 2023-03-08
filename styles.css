@@ -12,7 +12,7 @@
     --function-button-color: #636361;
     --clear-button-color: #50a3ec;
     --enter-button-color: #ffdd65;
-    --enter-button-text: #50a3ec;
+    --enter-button-text: #0b61cc;
     --background-color: #282828; 
 }
 
@@ -47,8 +47,8 @@ h1 {
 
 .calculator {
     display: grid;
-    max-width: 350px;
-    min-width: 350px;
+    max-width: 360px;
+    min-width: 360px;
     grid-template-rows: [row1] 7.5em [row2] 4.5em [row3] 4.5em [row4] 4.5em [row5] 4.5em;
     border: 3px solid var(--number-button-color);
     border-radius: .5em;
@@ -95,10 +95,11 @@ input {
     height: 2.5em;
     width: 3.75em;
     margin: .3em;
-    font-size: 1.2em;
+    font-size: 1.25em;
     font-weight: 700;
     border-radius: .3em;
 }
+
 
 #errorMessage {
     color: var(--clear-button-color);
