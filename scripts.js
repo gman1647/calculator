@@ -1,3 +1,5 @@
+
+
 //initial global variable declarations
 let initNumber = 0
 let displayNumber = ''
@@ -31,6 +33,10 @@ function divide (num1, num2) {
 function operate (num1, num2, sign) {
     num1 = parseFloat(num1);
     num2 = parseFloat(num2);
+    if (sign === '') {
+        num1 = displayNumber;
+        return num1;
+    }
     if (sign == "+") {
         return add(num1, num2);
     } else if (sign == "-") {
@@ -195,6 +201,7 @@ display.setAttribute('id', 'display');
 calculator.insertBefore(display, row1);
 display.textContent = initNumber;
 
+
 //event listeners for keyboard input
 document.addEventListener('keydown', function(event) {
     if (event.defaultPrevented) {
@@ -229,7 +236,8 @@ document.addEventListener('keydown', function(event) {
         } else if (event.key === "*") {
             multSignPressed ();
         } else if (event.key === "Enter") {
-            runOperation ();
+            event.preventDefault()              //prevents enter key from firing last button clicked if uses is using keyboard in combination with mouse.
+            runOperation ();  
         } else if (event.key === "Escape") {
             clear();
         } else if (event.key === "Backspace") {
@@ -379,9 +387,9 @@ const disableDarkMode = () => {
 }
 
 darkModeToggle.addEventListener('click', () => {
-   if (darkMode !== 'enabled') {
+    if (darkMode !== 'enabled') {
     enableDarkMode();
-   } else {
+    } else {
     disableDarkMode();
    }
 });
