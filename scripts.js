@@ -80,7 +80,6 @@ function updateDisplay (){
         displayNumber = "Error"
        return displayNumber;
     } else {
-    displayNumber = parseFloat(displayNumber);
     return displayNumber;
 };
 }
@@ -229,6 +228,8 @@ document.addEventListener('keydown', function(event) {
             updateNumber(9);
         } else if (event.key === "0") {
             updateNumber(0);
+        } else if (event.key === ".") {
+            updateNumber(".");
         } else if (event.key === "+") {
             plusSignPressed ();
         } else if (event.key === "-") {
@@ -297,12 +298,12 @@ numberZero = document.getElementById('0');
 numberZero.addEventListener('click', () => {
     updateNumber(0);
 });
-/*
+//WORKING HERE ON DECIMAL BUTTON
 decimalButton = document.getElementById('.');
 decimalButton.addEventListener('click', () => {
     updateNumber(".");
 })
-*/
+
 plusSign = document.getElementById('+');
 plusSign.addEventListener('click', () => {
     plusSignPressed ()
