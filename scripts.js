@@ -53,7 +53,9 @@ function operate (num1, num2, sign) {
 function runOperation () {    //do I need this??
     num2 = displayNumber
     displayNumber = ''
-    return updateNumber(operate(num1, num2, sign));
+    answer = operate(num1, num2, sign);
+    sign = '';
+    return updateNumber(answer);
 }
 
 //updates the number being entered
