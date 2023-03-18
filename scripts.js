@@ -302,7 +302,7 @@ numberZero.addEventListener('click', () => {
 //WORKING HERE ON DECIMAL BUTTON
 decimalButton = document.getElementById('.');
 decimalButton.addEventListener('click', () => {
-    updateNumber(".");
+    checkDecimal(displayNumber);
 })
 
 plusSign = document.getElementById('+');
@@ -408,16 +408,3 @@ function checkDecimal() {
             return isDecimal;
         }
     }
-/*
-function doesDisplayContainADecimal (display) {
-    for (let i = 0; i<display.length; i++) {
-        if (display[i]=".") {
-            isDecimal = "yes";
-            return isDecimal
-        } else {
-            console.log("no decimal");
-        }
-    }
-}
-
-*/
