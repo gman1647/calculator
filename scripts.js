@@ -7,6 +7,7 @@ let num1 = 0
 let num2 = 0
 let sign = ''
 let isDecimal = "no" 
+let darkMode = 'disabled';
 
 //Adds two numbers
 function add (num1, num2) {
@@ -51,7 +52,7 @@ function operate (num1, num2, sign) {
     }
 }
 
-function runOperation () {    //do I need this??
+function runOperation () {    
     num2 = displayNumber
     displayNumber = ''
     answer = operate(num1, num2, sign);
@@ -76,12 +77,6 @@ function updateDisplay (){
     display.setAttribute('id', 'display');
     calculator.insertBefore(display, row1);
     display.textContent = displayNumber;
-    if (displayNumber.startsWith("Error")) {
-        displayNumber = "Error"
-       return displayNumber;
-    } else {
-    return displayNumber;
-};
 }
 
 //stores the display number as num1
@@ -125,7 +120,9 @@ function checkLength (string) {
     string = string.toString();
     if (string.startsWith("Error")) {
         displayNumber="Error";
-        return displayNumber;    
+        return displayNumber;  
+    } else if (string % 1 != 0) {
+        roundIt(string);
     } else if (string.length > 13) {
         tooLong = document.createElement('div');
         tooLong.setAttribute('id', 'errorMessage')
@@ -137,6 +134,34 @@ function checkLength (string) {
       //  console.log("all good")
     }
 }
+
+
+function roundIt (numToRound) {
+        rounded = Math.round(numToRound * 10000) / 10000;
+        displayNumber = rounded;
+        return displayNumber;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 //handles operator input
 function plusSignPressed () {
@@ -195,6 +220,18 @@ function checkSign() {
         console.log("no sign");
     }
 };
+
+//Ensures only one decimal can be entered.
+function checkDecimal() {
+    if (isDecimal=="yes") {
+
+    } else {
+        updateNumber(".");
+        isDecimal = "yes";
+        console.log("isDecimal dec check: " + isDecimal);
+        return isDecimal;
+    }
+}
 
 //Adds the diplay for user input
 let display = document.createElement('div');
@@ -299,7 +336,7 @@ numberZero = document.getElementById('0');
 numberZero.addEventListener('click', () => {
     updateNumber(0);
 });
-//WORKING HERE ON DECIMAL BUTTON
+
 decimalButton = document.getElementById('.');
 decimalButton.addEventListener('click', () => {
     checkDecimal(displayNumber);
@@ -374,9 +411,8 @@ document.querySelectorAll('.operator').forEach(number => {
     });
 })
 
+//enables or disables dark mode
 const darkModeToggle = document.querySelector('#dark-mode-toggle');
-
-let darkMode = 'disabled';
 
 const enableDarkMode = () => {
     document.body.classList.add('darkmode');
@@ -397,14 +433,3 @@ darkModeToggle.addEventListener('click', () => {
     disableDarkMode();
    }
 });
-
-//Ensures only one decimal can be entered.
-function checkDecimal() {
-        if (isDecimal=="yes") {
-
-        } else {
-            updateNumber(".");
-            isDecimal = "yes";
-            return isDecimal;
-        }
-    }
