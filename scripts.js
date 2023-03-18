@@ -6,6 +6,7 @@ let displayNumber = ''
 let num1 = 0
 let num2 = 0
 let sign = ''
+let isDecimal = "no" 
 
 //Adds two numbers
 function add (num1, num2) {
@@ -61,7 +62,6 @@ function runOperation () {    //do I need this??
 //updates the number being entered
 function updateNumber (num) {
     checkLength(displayNumber);
-    console.log("this is from update number: " + displayNumber)
     displayNumber = displayNumber.toString() + num;
     return updateDisplay(displayNumber);
 }
@@ -88,6 +88,7 @@ function updateDisplay (){
 function storeNum () {
     num1 = displayNumber;
     displayNumber = '';
+    isDecimal = "no";
     return num1;
 }
 
@@ -96,6 +97,7 @@ function clear () {
     num1 = '';
     displayNumber = 0
     sign = '';
+    isDecimal = "no";
     storeNum();
     display.textContent = initNumber;
     tooLong= document.getElementById('errorMessage');
@@ -122,7 +124,6 @@ function deleteLast (num) {
 function checkLength (string) {
     string = string.toString();
     if (string.startsWith("Error")) {
-        console.log("too long")
         displayNumber="Error";
         return displayNumber;    
     } else if (string.length > 13) {
@@ -133,7 +134,7 @@ function checkLength (string) {
         displayNumber = 'Error'
         updateDisplay();
     } else {
-        console.log("all good")
+      //  console.log("all good")
     }
 }
 
@@ -229,7 +230,7 @@ document.addEventListener('keydown', function(event) {
         } else if (event.key === "0") {
             updateNumber(0);
         } else if (event.key === ".") {
-            updateNumber(".");
+            checkDecimal(displayNumber);
         } else if (event.key === "+") {
             plusSignPressed ();
         } else if (event.key === "-") {
@@ -396,3 +397,27 @@ darkModeToggle.addEventListener('click', () => {
     disableDarkMode();
    }
 });
+
+//Ensures only one decimal can be entered.
+function checkDecimal() {
+        if (isDecimal=="yes") {
+
+        } else {
+            updateNumber(".");
+            isDecimal = "yes";
+            return isDecimal;
+        }
+    }
+/*
+function doesDisplayContainADecimal (display) {
+    for (let i = 0; i<display.length; i++) {
+        if (display[i]=".") {
+            isDecimal = "yes";
+            return isDecimal
+        } else {
+            console.log("no decimal");
+        }
+    }
+}
+
+*/

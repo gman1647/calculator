@@ -1,8 +1,7 @@
 # calculator
 Calculator built as part of the Odin Project
 
-c   %   √   +
-7   8   9   -
-4   5   6   *
-1   2   3   /
-0   .   <   =
+Bugs to fix:
+    FIXED: Do not allow decimal if decimal present
+    *Handle repeating decimal e.g 11/3
+    *Handle non-numbers (#/0)
