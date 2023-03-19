@@ -59,7 +59,9 @@ function runOperation () {
     answer = operate(num1, num2, sign);
     sign = '';
     enterPressed = "yes";
-    if (answer == "Infinity" || answer == "NaN" || answer == "Error") {
+    if (displayNumber == "") {  
+        enterPressed = "no";
+    } else if (answer == "Infinity" || answer == "NaN" || answer == "Error") {
         displayNumber = "Error"
         console.log(displayNumber);
         updateNumber(displayNumber);
