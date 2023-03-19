@@ -1,5 +1,3 @@
-
-
 //initial global variable declarations
 let initNumber = 0
 let displayNumber = ''
@@ -59,9 +57,7 @@ function runOperation () {
     answer = operate(num1, num2, sign);
     sign = '';
     enterPressed = "yes";
-    if (displayNumber == "") {  
-        enterPressed = "no";
-    } else if (answer == "Infinity" || answer == "NaN" || answer == "Error") {
+    if (answer == "Infinity" || answer == "NaN" || answer == "Error") {
         displayNumber = "Error"
         console.log(displayNumber);
         updateNumber(displayNumber);
@@ -148,7 +144,7 @@ function checkLength (string) {
     if (string.startsWith("Error")) {
         displayNumber="Error";
         return displayNumber;  
-    } else if (string % 1 != 0) {
+    } else if (string.length > 13 && string % 1 != 0) {
         roundIt(string);
     } else if (string.length > 13) {
         tooLong = document.createElement('div');
@@ -246,6 +242,14 @@ function checkDecimal() {
     }
 }
 
+function initialInputCheck() {
+    if (displayNumber == "") {  
+        enterPressed = "no";
+    } else {
+        runOperation ();  
+    };
+}
+
 //Adds the diplay for user input
 let display = document.createElement('div');
 display.setAttribute("class", "display");
@@ -291,7 +295,7 @@ document.addEventListener('keydown', function(event) {
             multSignPressed ();
         } else if (event.key === "Enter") {
             event.preventDefault()              //prevents enter key from firing last button clicked if uses is using keyboard in combination with mouse.
-            runOperation ();  
+            initialInputCheck()
         } else if (event.key === "Escape") {
             clear();
         } else if (event.key === "Backspace") {
@@ -377,7 +381,7 @@ divideSign.addEventListener('click', () => {
 
 equalSign = document.getElementById('=');
 equalSign.addEventListener('click', () => {
-    runOperation();
+    initialInputCheck();
 });
 equalSign.addEventListener('mousedown', () => {
     equalSign.style.backgroundColor = "var(--function-button-color)";
