@@ -8,6 +8,7 @@ let num2 = 0
 let sign = ''
 let isDecimal = "no" 
 let darkMode = 'disabled';
+let enterPressed = "no";
 
 //Adds two numbers
 function add (num1, num2) {
@@ -57,15 +58,17 @@ function runOperation () {
     displayNumber = ''
     answer = operate(num1, num2, sign);
     sign = '';
+    enterPressed = "yes";
     return updateNumber(answer);
 }
 
 //updates the number being entered
 function updateNumber (num) {
+    console.log(enterPressed);
     checkLength(displayNumber);
     displayNumber = displayNumber.toString() + num;
     return updateDisplay(displayNumber);
-}
+    };
 
 //updates display
 function updateDisplay (){
@@ -77,7 +80,7 @@ function updateDisplay (){
     display.setAttribute('id', 'display');
     calculator.insertBefore(display, row1);
     display.textContent = displayNumber;
-}
+    };
 
 //stores the display number as num1
 function storeNum () {
@@ -93,10 +96,19 @@ function clear () {
     displayNumber = 0
     sign = '';
     isDecimal = "no";
+    enterPressed = "no";
     storeNum();
     display.textContent = initNumber;
     tooLong= document.getElementById('errorMessage');
     document.body.removeChild(tooLong);
+}
+
+function checkEnter (num) {
+    if (enterPressed == "yes") {
+        return displayNumber;
+    } else {
+        updateNumber(num)
+    }
 }
 
 //deletes last digit entered
@@ -107,13 +119,20 @@ function deleteLast (num) {
     } else if (num == 0) {
         displayNumber = 0;
         return displayNumber;
+    } else if (enterPressed == "yes") {
+        stopIt = document.createElement('div');
+        stopIt.setAttribute('id', 'errorMessage')
+        document.body.appendChild(stopIt);
+        stopIt.textContent = 'Please use the clear button.'
+        return displayNumber
     } else {
     num = num.toString();
     num = num.slice(0, -1);
     display.textContent = num;
     displayNumber = num;
     return displayNumber;
-}};
+    };
+};
 
 //checks if the string is too long for the display and returns error if so
 function checkLength (string) {
@@ -135,33 +154,12 @@ function checkLength (string) {
     }
 }
 
-
+//rounds decimals to 4 places if too long
 function roundIt (numToRound) {
         rounded = Math.round(numToRound * 10000) / 10000;
         displayNumber = rounded;
         return displayNumber;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 //handles operator input
 function plusSignPressed () {
@@ -172,6 +170,7 @@ function plusSignPressed () {
     checkSign();
     storeNum();
     sign = '+';
+    enterPressed = "no"
     return sign;
     }
 }
@@ -184,6 +183,7 @@ function minusSignPressed () {
     checkSign();
     storeNum();
     sign = '-';
+    enterPressed = "no"
     return sign;
     }
 }
@@ -196,6 +196,7 @@ function multSignPressed () {
     checkSign();
     storeNum();
     sign = '*';
+    enterPressed = "no"
     return sign;
     }
 }
@@ -208,6 +209,7 @@ function divSignPressed () {
     checkSign();
     storeNum();
     sign = '/';
+    enterPressed = "no"
     return sign;
     }
 }
@@ -224,7 +226,6 @@ function checkSign() {
 //Ensures only one decimal can be entered.
 function checkDecimal() {
     if (isDecimal=="yes") {
-
     } else {
         updateNumber(".");
         isDecimal = "yes";
@@ -247,25 +248,25 @@ document.addEventListener('keydown', function(event) {
         return;
         }
         if (event.key === "1") {
-            updateNumber(1);
+            checkEnter(1);
         } else if (event.key === "2") {
-            updateNumber(2);
+            checkEnter(2);
         } else if (event.key === "3") {
-            updateNumber(3);
+            checkEnter(3);
         } else if (event.key === "4") {
-            updateNumber(4);
+            checkEnter(4);
         } else if (event.key === "5") {
-            updateNumber(5);
+            checkEnter(5);
         } else if (event.key === "6") {
-            updateNumber(6);
+            checkEnter(6);
         } else if (event.key === "7") {
-            updateNumber(7);
+            checkEnter(7);
         } else if (event.key === "8") {
-            updateNumber(8);
+            checkEnter(8);
         } else if (event.key === "9") {
-            updateNumber(9);
+            checkEnter(9);
         } else if (event.key === "0") {
-            updateNumber(0);
+            checkEnter(0);
         } else if (event.key === ".") {
             checkDecimal(displayNumber);
         } else if (event.key === "+") {
@@ -289,52 +290,52 @@ document.addEventListener('keydown', function(event) {
 //event listeners for mouse clicks on the buttons
 numberOne = document.getElementById('1');
 numberOne.addEventListener('click', () => {
-    updateNumber(1);
+    checkEnter(1);
 });
 
 numberTwo = document.getElementById('2');
 numberTwo.addEventListener('click', () => {
-    updateNumber(2);
+    checkEnter(2);
 });
 
 numberThree = document.getElementById('3');
 numberThree.addEventListener('click', () => {
-    updateNumber(3);
+    checkEnter(3);
 });
 
 numberFour = document.getElementById('4');
 numberFour.addEventListener('click', () => {
-    updateNumber(4);
+    checkEnter(4);
 });
 
 numberFive = document.getElementById('5');
 numberFive.addEventListener('click', () => {
-    updateNumber(5);
+    checkEnter(5);
 });
 
 numberSix = document.getElementById('6');
 numberSix.addEventListener('click', () => {
-    updateNumber(6);
+    checkEnter(6);
 });
 
 numberSeven = document.getElementById('7');
 numberSeven.addEventListener('click', () => {
-    updateNumber(7);
+    checkEnter(7);
 });
 
 numberEight = document.getElementById('8');
 numberEight.addEventListener('click', () => {
-    updateNumber(8);
+    checkEnter(8);
 });
 
 numberNine = document.getElementById('9');
 numberNine.addEventListener('click', () => {
-    updateNumber(9);
+    checkEnter(9);
 });
 
 numberZero = document.getElementById('0');
 numberZero.addEventListener('click', () => {
-    updateNumber(0);
+    checkEnter(0);
 });
 
 decimalButton = document.getElementById('.');
