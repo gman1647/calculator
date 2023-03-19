@@ -55,11 +55,17 @@ function operate (num1, num2, sign) {
 
 function runOperation () {    
     num2 = displayNumber
-    displayNumber = ''
+    displayNumber = '';
     answer = operate(num1, num2, sign);
     sign = '';
     enterPressed = "yes";
+    if (answer == "Infinity" || answer == "NaN" || answer == "Error") {
+        displayNumber = "Error"
+        console.log(displayNumber);
+        updateNumber(displayNumber);
+    } else {
     return updateNumber(answer);
+    };
 }
 
 //updates the number being entered
@@ -225,8 +231,12 @@ function checkSign() {
 
 //Ensures only one decimal can be entered.
 function checkDecimal() {
+    console.log(displayNumber);
     if (isDecimal=="yes") {
-    } else {
+    } else if (displayNumber == "") {
+        updateNumber("0.");
+        isDecimal = "yes";
+        } else {    
         updateNumber(".");
         isDecimal = "yes";
         console.log("isDecimal dec check: " + isDecimal);
