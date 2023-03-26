@@ -151,7 +151,7 @@ function checkLength (string) {
         tooLong = document.createElement('div');
         tooLong.setAttribute('id', 'errorMessage')
         document.body.appendChild(tooLong);
-        tooLong.textContent = 'Error: maximum output is 13 digts.'
+        tooLong.textContent = 'Error: maximum output is 13 digits.'
         displayNumber = 'Error'
         updateDisplay();
     } else {

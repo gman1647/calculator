@@ -7,6 +7,33 @@
     --background-color: #f0edf1;
 }
 
+@media (max-width: 380px) {
+    .calculator {
+        min-width: 325px;
+    } 
+
+    .clear {
+        height: 2.5em;
+        width: 2.25em;
+        margin: .3em;
+        font-size: 1em;
+        font-weight: 700;
+        border-radius: .3em;
+        padding: 0;
+    }
+    
+    .number, .operator, .enter {
+        height: 2.5em;
+        width: 3.0em;
+        margin: .3em;
+        font-size: 1 em;
+        font-weight: 700;
+        border-radius: .3em;
+        padding: 0;
+    }
+
+}
+
 .darkmode {
     --number-button-color: #0b61cc;
     --function-button-color: #636361;
@@ -48,8 +75,8 @@ h1 {
 .calculator {
     display: grid;
     max-width: 360px;
-    min-width: 360px;
-    grid-template-rows: [row1] 7.5em [row2] 4.5em [row3] 4.5em [row4] 4.5em [row5] 4.5em;
+    /*min-width: 360px;
+*/    grid-template-rows: [row1] 7.5em [row2] 4.5em [row3] 4.5em [row4] 4.5em [row5] 4.5em;
     border: 3px solid var(--number-button-color);
     border-radius: .5em;
     margin:auto;
