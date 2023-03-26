@@ -57,7 +57,8 @@ function runOperation () {
     answer = operate(num1, num2, sign);
     sign = '';
     enterPressed = "yes";
-    if (answer == "Infinity" || answer == "NaN" || answer == "Error") {
+    console.log(answer);
+    if (answer == "Infinity" || answer == "Error" || num1 == "Error") {
         displayNumber = "Error"
         console.log(displayNumber);
         updateNumber(displayNumber);
@@ -242,6 +243,7 @@ function checkDecimal() {
     }
 }
 
+//Handles error when enter is clicked prior to a number or operator
 function checkInitialEnter() {
     if (sign == '') {
         return displayNumber
