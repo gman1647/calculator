@@ -47,7 +47,6 @@ function operate (num1, num2, sign) {
     } else if (sign == "/") {
         return divide(num1, num2);
     } else {
-        console.log("no input");
     }
 }
 
@@ -57,10 +56,14 @@ function runOperation () {
     answer = operate(num1, num2, sign);
     sign = '';
     enterPressed = "yes";
-    console.log(answer);
-    if (answer == "Infinity" || answer == "Error" || num1 == "Error") {
+    console.log("Anser: " + answer);
+    console.log("num2: " + num2);
+    console.log("num1: " + num1);
+    console.log("display number: " + displayNumber)
+    if (num2 == "") {
+        return updateNumber(num1);
+    } else if (answer == "Infinity" || answer == "Error" || num1 == "Error") {
         displayNumber = "Error"
-        console.log(displayNumber);
         updateNumber(displayNumber);
     } else {
     return updateNumber(answer);
@@ -69,7 +72,6 @@ function runOperation () {
 
 //updates the number being entered
 function updateNumber (num) {
-    console.log(enterPressed);
     checkLength(displayNumber);
     displayNumber = displayNumber.toString() + num;
     return updateDisplay(displayNumber);
@@ -155,7 +157,7 @@ function checkLength (string) {
         displayNumber = 'Error'
         updateDisplay();
     } else {
-      //  console.log("all good")
+
     }
 }
 
@@ -224,13 +226,11 @@ function checkSign() {
     if (sign !== '') {
         runOperation();
     } else {
-        console.log("no sign");
     }
 };
 
 //Ensures only one decimal can be entered.
 function checkDecimal() {
-    console.log(displayNumber);
     if (isDecimal=="yes") {
     } else if (displayNumber == "") {
         updateNumber("0.");
@@ -238,7 +238,6 @@ function checkDecimal() {
         } else {    
         updateNumber(".");
         isDecimal = "yes";
-        console.log("isDecimal dec check: " + isDecimal);
         return isDecimal;
     }
 }
