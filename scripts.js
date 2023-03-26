@@ -242,6 +242,14 @@ function checkDecimal() {
     }
 }
 
+function checkInitialEnter() {
+    if (sign == '') {
+        return displayNumber
+    } else {
+        runOperation();
+    }
+}
+
 //Adds the diplay for user input
 let display = document.createElement('div');
 display.setAttribute("class", "display");
@@ -287,7 +295,7 @@ document.addEventListener('keydown', function(event) {
             multSignPressed ();
         } else if (event.key === "Enter") {
             event.preventDefault()              //prevents enter key from firing last button clicked if uses is using keyboard in combination with mouse.
-            runOperation ()
+            checkInitialEnter()
         } else if (event.key === "Escape") {
             clear();
         } else if (event.key === "Backspace") {
@@ -373,7 +381,7 @@ divideSign.addEventListener('click', () => {
 
 equalSign = document.getElementById('=');
 equalSign.addEventListener('click', () => {
-    runOperation ();
+    checkInitialEnter();
 });
 equalSign.addEventListener('mousedown', () => {
     equalSign.style.backgroundColor = "var(--function-button-color)";
