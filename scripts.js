@@ -9,27 +9,16 @@ let darkMode = 'disabled';
 let enterPressed = "no";
 
 //Adds two numbers
-function add (num1, num2) {
-    total = num1 + num2;
-    return total;
-}
+let add = (num1, num2) => num1 + num2;
 
 //Subtracts two numbers
-function subtract (num1, num2) {
-    total = num1 - num2;
-    return total;
-}
+let subtract = (num1, num2) => num1 - num2;
 
 //Multiplies two numbers
-function multiply (num1, num2) {
-    total = num1 * num2;
-    return total;
-}
+let multiply = (num1, num2) => num1 * num2;
+
 //Divides two numbers
-function divide (num1, num2) {
-    total = num1 / num2;
-    return total;
-}
+let divide = (num1, num2) => num1 /num2;
 
 //Performs an arthimatic operatoin
 function operate (num1, num2, sign) {
