@@ -7,6 +7,11 @@
     --background-color: #f0edf1;
 }
 
+* {
+    background-color: var(--background-color);
+}
+
+
 @media (max-width: 380px) {
     .calculator {
         min-width: 325px;
@@ -43,9 +48,6 @@
     --background-color: #282828; 
 }
 
-* {
-    background-color: var(--background-color);
-}
 
 .dark-mode-toggle {
     text-align: right;
@@ -55,6 +57,10 @@
     color: var(--clear-button-color);
     border-radius: 3px;
     float: right;
+}
+
+.dark-mode-toggle:hover {
+    cursor: pointer;
 }
 
 body {

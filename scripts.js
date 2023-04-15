@@ -30,6 +30,7 @@ function divide (num1, num2) {
     total = num1 / num2;
     return total;
 }
+
 //Performs an arthimatic operatoin
 function operate (num1, num2, sign) {
     num1 = parseFloat(num1);
@@ -46,8 +47,7 @@ function operate (num1, num2, sign) {
         return multiply(num1, num2);
     } else if (sign == "/") {
         return divide(num1, num2);
-    } else {
-    }
+    };
 }
 
 function runOperation () {    
@@ -56,10 +56,6 @@ function runOperation () {
     answer = operate(num1, num2, sign);
     sign = '';
     enterPressed = "yes";
-    console.log("Anser: " + answer);
-    console.log("num2: " + num2);
-    console.log("num1: " + num1);
-    console.log("display number: " + displayNumber)
     if (num2 == "") {
         return updateNumber(num1);
     } else if (answer == "Infinity" || answer == "Error" || num1 == "Error") {
@@ -435,19 +431,13 @@ const darkModeToggle = document.querySelector('#dark-mode-toggle');
 const enableDarkMode = () => {
     document.body.classList.add('darkmode');
     darkMode = 'enabled';
-    return darkMode;
 }
 
 const disableDarkMode = () => {
     document.body.classList.remove('darkmode');
     darkMode = 'disabled';
-    return darkMode;
 }
 
 darkModeToggle.addEventListener('click', () => {
-    if (darkMode !== 'enabled') {
-    enableDarkMode();
-    } else {
-    disableDarkMode();
-   }
+    darkMode !== 'enabled' ? enableDarkMode() : disableDarkMode ();
 });
