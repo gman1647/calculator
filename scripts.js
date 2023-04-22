@@ -8,16 +8,10 @@ let isDecimal = "no"
 let darkMode = 'disabled';
 let enterPressed = "no";
 
-//Adds two numbers
+//Mathmatical operations
 let add = (num1, num2) => num1 + num2;
-
-//Subtracts two numbers
 let subtract = (num1, num2) => num1 - num2;
-
-//Multiplies two numbers
 let multiply = (num1, num2) => num1 * num2;
-
-//Divides two numbers
 let divide = (num1, num2) => num1 /num2;
 
 //Performs an arthimatic operatoin
@@ -34,7 +28,7 @@ function operate (num1, num2, sign) {
         return subtract(num1, num2);
     } else if (sign  == "*") {
         return multiply(num1, num2);
-    } else if (sign == "/") {
+    } else {
         return divide(num1, num2);
     };
 }
